@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <h3 style="margin-top: 0;">Login to Continue</h3>
+</div>
+<form>
+    <div class="modal-body">
+        <div class="pf-form pform_custom" ng-class="{'has-error' : invalidCredentials}">
+            <div class="row">
+                <div class="col-lg-12">
+                    <alert ng-show="invalidCredentials" type="danger">Invalid credentials!</alert>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span class="pf-label">Username</span>
+                </div>
+                <div class="col-lg-8">
+                    <input autofocus="true" class="text-field form-control" type="text" ng-model="username">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span class="pf-label">Password</span>
+                </div>
+                <div class="col-lg-8">
+                    <input class="text-field form-control" type="password" ng-model="password">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+            <input class="btn btn-primary" type="submit" ng-click="submit();" value="Submit">
+            <input class="btn btn-default" type="button" ng-click="cancel()" value="Cancel">
+    </div>
+</form>

@@ -1,0 +1,46 @@
+body {
+    padding-bottom: 50px;
+}
+
+footer p {
+    padding-top: 15px;
+    text-align: end;
+}
+/*
+[ui-view].ng-enter, [ui-view].ng-leave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    -webkit-transition:all .5s ease-in-out;
+    transition:all .5s easein;
+}
+*/
+[ui-view].ng-enter {
+    opacity: 0;
+}
+
+[ui-view].ng-enter-active {
+    opacity: 1;
+}
+
+[ui-view].ng-leave {
+    opacity: 1;
+}
+
+[ui-view].ng-leave-active {
+    opacity: 0;
+}
+
+.loading-modal {
+    display:    block;
+    position:   fixed;
+    z-index:    1031;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 )
+    url('http://jimpunk.net/Loading/wp-content/uploads/loading34.gif')
+    50% 50%
+    no-repeat;
+}

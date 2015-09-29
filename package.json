@@ -1,0 +1,22 @@
+{
+  "name": "Contacts",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "express": "~4.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osnircunha/Node-Contacts.git"
+  },
+  "keywords": [
+    "node.js", "angular.js", "rest", "mvc", "contact"
+  ],
+  "author": "Osnir Cunha",
+  "license": "Public Domain",
+  "readmeFilename": "README.md"
+}

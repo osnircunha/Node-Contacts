@@ -1,0 +1,11 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="no();"><span>&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Excluir Contato</h4>
+    </div>
+    <div class="modal-body">Deseja realmente excluir <strong>{{c.name}}</strong>? </div>
+    <div class="modal-footer">
+        <button type="button" ng-click="yes(c.id);" class="btn btn-primary">Sim</button>
+        <button type="button" ng-click="no();" class="btn btn-default">N&atilde;o</button>
+    </div>
+</div>

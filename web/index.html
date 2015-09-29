@@ -1,0 +1,43 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: osnircunha
+  Date: 8/13/15
+  Time: 8:06 PM
+-->
+<html ng-app="ContactApp">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Angular test</title>
+
+    <script src="scripts/libraries/jquery.min.js"></script>
+    <script src="scripts/libraries/bootstrap.min.js"></script>
+    <script src="scripts/libraries/angular.min.js"></script>
+    <script src="scripts/libraries/angular-ui-router.min.js"></script>
+    <script src="scripts/libraries/angular-animate.js"></script>
+    <script src="scripts/libraries/ui-bootstrap-tpls-0.13.4.js"></script>
+    <script src="scripts/libraries/pnotify.custom.min.js" ></script>
+
+    <script src="scripts/directives/footer.js"></script>
+    <script src="scripts/directives/header.js"></script>
+    <script src="scripts/directives/loading.js"></script>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/contact.js" ></script>
+    <script src="scripts/controllers/login.js" ></script>
+
+    <link rel="stylesheet" href="style/pnotify.custom.min.css" >
+    <link rel="stylesheet" href="style/app.css" >
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+</head>
+<body>
+    <div header-section></div>
+
+    <loading-view></loading-view>
+
+    <div class="container panel panel-default">
+        <div ui-view ></div>
+    </div>
+
+    <div footer-section></div>
+</body>
+</html>

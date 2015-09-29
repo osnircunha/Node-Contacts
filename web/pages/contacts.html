@@ -1,0 +1,48 @@
+<div id="home" class="panel-body">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-3">
+                <h2>Contatos</h2>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-group h2" ng-show="contacts.length">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </span>
+                    <input class="form-control" type="text" ng-model="contactFilter" placeholder="Filtrar contatos ..." >
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <input class="btn btn-primary pull-right h2" type="button" ng-click="showNewModal('save', {})" value="New">
+            </div>
+        </div>
+        <div class="row" ng-show="contacts.length">
+            <div class="table-responsive col-sm-12">
+                <table class="table table-bordered table-striped" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Opções</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="c in contacts | filter:contactFilter | orderBy:'-name'">
+                        <td>{{$index+1}}</td>
+                        <td>{{ c.name }}</td>
+                        <td>{{ c.phone }}</td>
+                        <td>{{ c.email }}</td>
+                        <td>
+                            <a class="btn btn-success btn-xs" ui-sref="contactDetail({id : c.id})">Visualizar</a>
+                            <a class="btn btn-warning btn-xs" ng-click="showNewModal('update', c)" >Editar</a>
+                            <a class="btn btn-danger btn-xs" ng-click="showDeleteModal(c);" >Excluir</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

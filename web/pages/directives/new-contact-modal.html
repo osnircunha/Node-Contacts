@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="no();"><span>&times;</span></button>
+    <div ng-switch="action">
+        <h4 class="modal-title" ng-switch-when="save" >Novo Contato</h4>
+        <h4 class="modal-title" ng-switch-when="update" >Atualizar Contato</h4>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="pf-form pform_custom" ng-class="{'has-error' : incomplete}">
+        <div class="row" ng-show="contact.id">
+            <div class="col-lg-4">
+                <span>Id</span>
+            </div>
+            <div class="col-lg-8">
+                <input type="text" disabled="true" class="form-control" value="{{contact.id}}" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <span>Nome</span>
+            </div>
+            <div class="col-lg-8">
+                <input class="form-control" type="text" ng-model="contact.name" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <span>Telefone</span>
+            </div>
+            <div class="col-lg-8">
+                <input type="tel" aria-required="true" required="required" class="form-control" min="0" ng-model="contact.phone" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <span>Email</span>
+            </div>
+            <div class="col-lg-8">
+                <input type="email" aria-required="true" required="required" class="form-control" min="0" ng-model="contact.email" >
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button ng-show="action == 'save'" type="button" ng-click="salvar(contact);" class="btn btn-primary">Salvar</button>
+    <button ng-show="action == 'update'" type="button" ng-click="atualizar(contact);" class="btn btn-primary">Atualizar</button>
+    <button type="button" ng-click="no();" class="btn btn-default">Cancelar</button>
+</div>
