@@ -5,9 +5,12 @@
   "scripts": {
     "start": "node ./bin/www"
   },
+  "bin": { "contacts": "bin/www" },
   "dependencies": {
     "body-parser": "~1.13.2",
-    "express": "~4.13.1"
+    "express": "~4.13.1",
+    "http-status" : "0.2.0",
+    "sqlite3": "3.1.0"
   },
   "repository": {
     "type": "git",

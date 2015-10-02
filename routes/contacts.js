@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
-var HttpStatus = require('http-status-codes');
+var HttpStatus = require('http-status');
 
 var contactDao = require('../datalayer/contactDao');
 

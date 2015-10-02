@@ -1,13 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var HttpStatus = require('http-status-codes');
+var HttpStatus = require('http-status');
 
 var users = require('./routes/users');
 var contacts = require('./routes/contacts');
 
 var app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/rest/', users, contacts);
 app.use('/', express.static('web'));
