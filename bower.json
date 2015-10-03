@@ -1,0 +1,40 @@
+{
+  "name": "Contacts",
+  "version": "0.0.1",
+  "homepage": "https://github.com/osnircunha/Node-Contacts",
+  "authors": [
+    "osnircunha <osnircunha@gmail.com>"
+  ],
+  "description": "Simple web contacts list",
+  "main": "./bin/www",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "node.js",
+    "angular.js",
+    "rest",
+    "mvc",
+    "contact"
+  ],
+  "license": "Public Domain",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "3.3.5",
+    "angular-ui-bootstrap": "~0.13.4",
+    "angular": "~1.4.7",
+    "angular-ui-router": "~0.2.15",
+    "angular-bootstrap": "angular-ui-bootstrap-bower#~0.13.4",
+    "angular-animate": "~1.4.7",
+    "pnotify": "~2.1.0"
+  }
+}

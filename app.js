@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/rest/', users, contacts);
-app.use('/', express.static('web'));
+app.use('/', express.static(__dirname + '/web'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
