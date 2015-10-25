@@ -35,7 +35,7 @@
                         <td>{{ c.phone }}</td>
                         <td>{{ c.email }}</td>
                         <td>
-                            <a class="btn btn-success btn-xs" ui-sref="contactDetail({id : c.id})">Visualizar</a>
+                            <a class="btn btn-success btn-xs" ng-click="showDetailModal(c.id)" >Visualizar</a>
                             <a class="btn btn-warning btn-xs" ng-click="showNewModal('update', c)" >Editar</a>
                             <a class="btn btn-danger btn-xs" ng-click="showDeleteModal(c);" >Excluir</a>
                         </td>
