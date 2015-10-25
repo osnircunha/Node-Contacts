@@ -2,8 +2,7 @@
  * Created by osnircunha on 9/24/15.
  */
 
-app.controller('contactController', function($rootScope, $scope,
-  $stateParams, notification, $http, $modal) {
+app.controller('contactController', function($rootScope, $scope, $stateParams, notification, $http, $modal) {
 
   $scope.saveContact = function() {
     try {
@@ -100,8 +99,8 @@ app.controller('contactController', function($rootScope, $scope,
       },
       scope: $scope,
       size: 'sm',
-    })
-  }
+    });
+  };
 
   $scope.showDeleteModal = function(contact) {
     $modal.open({
@@ -124,8 +123,8 @@ app.controller('contactController', function($rootScope, $scope,
       },
       scope: $scope,
       size: 'sm',
-    })
-  }
+    });
+  };
 
   $scope.showNewModal = function(action, c) {
     $modal.open({
@@ -158,8 +157,8 @@ app.controller('contactController', function($rootScope, $scope,
       },
       scope: $scope,
       size: 'sm',
-    })
-  }
+    });
+  };
 
   $scope.listContacts();
 

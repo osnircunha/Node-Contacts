@@ -8,7 +8,7 @@ var app = angular.module('ContactApp', ['ui.router', 'ngAnimate',
   'directives.loading',
 ]);
 
-app.run(function($rootScope, $state, loginModal, notification, $state) {
+app.run(function($rootScope, $state, loginModal, notification) {
   // init content here
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
     var requireLogin = toState.data.requireLogin;
@@ -46,7 +46,7 @@ app.service('loginModal', function($modal, $rootScope) {
       keyboard: false,
       size: 'sm',
       controller: 'loginController'
-    })
+    });
 
     return instance.result.then(assignCurrentUser);
   };
@@ -63,7 +63,7 @@ app.factory('notification', function() {
         buttons: {
           sticker: false
         }
-      })
+      });
     },
     showSuccess: function(msg) {
       new PNotify({
@@ -73,7 +73,7 @@ app.factory('notification', function() {
         buttons: {
           sticker: false
         }
-      })
+      });
     }
   };
 });

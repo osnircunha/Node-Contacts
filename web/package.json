@@ -7,7 +7,10 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-header": "^1.7.1",
+    "gulp-jshint": "^1.11.2",
     "gulp-ng-annotate": "^1.1.0",
+    "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.4.2"
   }
 }

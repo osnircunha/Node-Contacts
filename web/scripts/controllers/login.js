@@ -5,7 +5,7 @@ app.controller('loginController', function ($scope, $rootScope, notification, $h
 
     $scope.cancel = function(){
         $scope.$dismiss('cancel');
-    }
+    };
 
     $scope.submit = function () {
         if ($scope.username && $scope.password) {
@@ -32,7 +32,7 @@ app.controller('loginController', function ($scope, $rootScope, notification, $h
     $scope.logout = function(){
         delete $rootScope.currentUser;
         $state.go('welcome');
-    }
+    };
 
     //var loggedButton = angular.element('#logged-user');
     angular.element('ul.nav li.dropdown').hover(function() {
