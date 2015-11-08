@@ -11,14 +11,14 @@
         </div>
         <div id="main-menu" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class='{"active":page=="welcome"}'><a ui-sref="welcome">Inicio</a></li>
-                <li ng-class='{"active":page=="contact"}'><a ui-sref="contact">Contatos</a></li>
+                <li ng-class='{"active":page=="welcome"}'><a href="#/welcome">Inicio</a></li>
+                <li ng-class='{"active":page=="contact"}'><a href="#/contact">Contatos</a></li>
                 <li class="dropdown" ng-show="currentUser != null">
                     <a class="dropdown-toggle" data-toggle="dropdown">
                         Olá <strong>{{currentUser.username}}</strong><span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" ng-click="logout();">Logout</a></li>
+                        <li><a ng-click="logout();">Logout</a></li>
                     </ul>
                 </li>
 

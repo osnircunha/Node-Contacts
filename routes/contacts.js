@@ -32,7 +32,7 @@ router.get('/contacts/:id', function (req, res) {
     });
 });
 
-router.put('/contacts', function (req, res) {
+router.put('/contacts/:id', function (req, res) {
     var contact = req.body;
     contactDao.update(contact, function (err, result) {
         if (!err) {

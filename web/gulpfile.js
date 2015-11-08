@@ -21,7 +21,7 @@ gulp.task('minifyJs', function () {
     gulp.src('scripts/**/*.js')
         .pipe(concat('application.js'))
         .pipe(ngAnnotate())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(header('/*\n * Code analyzed by Gulp.\n*/\n'))
         .pipe(rename({extname: '.min.js'}))
         .pipe(gulp.dest('dist'));

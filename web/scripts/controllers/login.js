@@ -1,7 +1,7 @@
 /**
  * Created by osnircunha on 9/24/15.
  */
-app.controller('loginController', function ($scope, $rootScope, notification, $http, $state) {
+angular.module('controller.login', ['ngRoute']).controller('loginController', function ($scope, $rootScope, notification, $http, $location) {
 
     $scope.cancel = function(){
         $scope.$dismiss('cancel');
@@ -31,7 +31,8 @@ app.controller('loginController', function ($scope, $rootScope, notification, $h
 
     $scope.logout = function(){
         delete $rootScope.currentUser;
-        $state.go('welcome');
+        //$state.go('welcome');
+        $scope.$apply( $location.path( 'welcome' ) );
     };
 
     //var loggedButton = angular.element('#logged-user');
