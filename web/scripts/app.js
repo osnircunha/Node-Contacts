@@ -4,16 +4,17 @@
 var app = angular.module('ContactApp', [
     'ngRoute',
     'ngAnimate',
-    'ui.bootstrap',
     'directives.footer',
     'directives.header',
     'directives.loading',
     'controller.contact',
-    'controller.login'
-
+    'controller.login',
+    'app.users',
+    'app.notification',
+    'app.directives.alert'
 ]);
 
-app.run(function ($rootScope, loginModal, notification, $window, $route) {
+app.run(function ($rootScope, loginModal, $window, $route) {
     // init content here
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
         if (next.access !== undefined && $rootScope.currentUser === undefined) {
@@ -44,33 +45,6 @@ app.service('loginModal', function ($modal, $rootScope) {
 
 });
 
-app.factory('notification', function () {
-    var notification = {};
-
-    notification.showError = function (msg) {
-        new PNotify({
-            title: 'Erro:',
-            text: msg,
-            type: 'error',
-            buttons: {
-                sticker: false
-            }
-        });
-    };
-
-    notification.showSuccess = function (msg) {
-        new PNotify({
-            title: 'Sucesso:',
-            text: msg,
-            type: 'success',
-            buttons: {
-                sticker: false
-            }
-        });
-    };
-    return notification;
-});
-
 app.config(['$routeProvider', function ($routeProvider) {
     // For any unmatched url, redirect to /state1
     $routeProvider
@@ -87,15 +61,8 @@ app.config(['$routeProvider', function ($routeProvider) {
         })
         .when("/contact/:id", {
             templateUrl: "pages/directives/view-contact-modal.html",
-            controller: function ($routeParams, $http, $scope, notification) {
-                $http({
-                    method: 'GET',
-                    url: '/rest/contacts/' + $routeParams.id
-                }).then(function (resp) {
-                    $scope.contactDetail = resp.data;
-                }, function (resp) {
-                    notification.showError('Erro ao recuperar contato.');
-                });
+            controller: function ($routeParams, $scope, UsersServices, $location) {
+                $scope.contactDetail = UsersServices.get({id: $routeParams.id});
 
                 $scope.no = function () {
                     $location.url('/contact');
@@ -103,12 +70,6 @@ app.config(['$routeProvider', function ($routeProvider) {
             },
             access: {
                 requiresLogin: true
-            },
-            resolve: function () {
-                return {
-                    login: false,
-                    label: 'welcome'
-                };
             }
         }).otherwise('/welcome');
     //      $locationProvider.html5Mode(true);

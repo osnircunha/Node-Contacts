@@ -2,24 +2,24 @@
  * Created by osnircunha on 9/24/15.
  */
 
-angular.module('controller.contact', ['ngRoute', 'app.users'])
-    .controller('contactController', function ($rootScope, $scope, $routeParams, notification, $http, UsersServices, $modal) {
+angular.module('controller.contact', ['ngRoute', 'app.users', 'modal.service', 'app.notification'])
+    .controller('contactController', function ($rootScope, $scope, $routeParams, NotificationService, $http, UsersServices, ModalService) {
 
     $scope.saveContact = function () {
         try {
             if ($scope.contact.name && $scope.contact.phone && $scope.contact.email) {
                 UsersServices.save($scope.contact).$promise.then(
                     function (resp) {
-                        notification.showSuccess('Contato salvo.');
+                        NotificationService.showSuccess('Contato salvo.');
                         $scope.listContacts();
                     }, function (resp) {
                         throw resp;
                     });
             } else {
-                notification.showError('Erro ao salvar contato.');
+                NotificationService.showError('Erro ao salvar contato.');
             }
         } catch (err) {
-            notification.showError('Erro ao salvar contato. ' + err.message);
+            NotificationService.showError('Erro ao salvar contato. ' + err.message);
         }
     };
 
@@ -28,21 +28,22 @@ angular.module('controller.contact', ['ngRoute', 'app.users'])
             if ($scope.contact.name && $scope.contact.phone && $scope.contact.email) {
                 UsersServices.update($scope.contact).$promise.then(
                     function (resp) {
-                        notification.showSuccess('Contato atualizado.');
+                        NotificationService.showSuccess('Contato atualizado.');
                         $scope.listContacts();
                     }, function (resp) {
                         throw resp;
                     });
             } else {
-                notification.showError('Erro ao salvar contato.');
+                NotificationService.showError('Erro ao salvar contato.');
             }
         } catch (err) {
-            notification.showError('Erro ao salvar contato. ' + err.message);
+            NotificationService.showError('Erro ao salvar contato. ' + err.message);
         }
     };
 
     $scope.listContacts = function () {
         $scope.contacts = UsersServices.list();
+
     };
 
     $scope.getContact = function (id) {
@@ -51,42 +52,41 @@ angular.module('controller.contact', ['ngRoute', 'app.users'])
 
     $scope.deleteContact = function (id) {
         UsersServices.delete({id: id}).$promise.then(function (resp) {
-            notification.showSuccess('Contato removido.');
+            NotificationService.showSuccess('Contato removido.');
             $scope.listContacts();
         }, function (resp) {
-            notification.showError('Erro ao remover contato.');
+            NotificationService.showError('Erro ao remover contato.');
         });
     };
 
     $scope.showDetailModal = function (id) {
-        $modal.open({
-            templateUrl: "pages/directives/view-contact-modal.html",
-            resolve: {
+        ModalService.createModal(
+            {
                 id: function () {
                     return id;
                 }
             },
-            controller: function (id) {
+            "pages/directives/view-contact-modal.html",
+            function (id) {
                 $scope.getContact(id);
 
                 $scope.no = function () {
                     this.$dismiss();
                 };
             },
-            scope: $scope,
-            size: 'sm'
-        });
+            $scope
+        );
     };
 
     $scope.showDeleteModal = function (contact) {
-        $modal.open({
-            templateUrl: "pages/directives/delete-contact-modal.html",
-            resolve: {
+        ModalService.createModal(
+            {
                 c: function () {
                     return contact;
                 }
             },
-            controller: function (c) {
+            "pages/directives/delete-contact-modal.html",
+            function (c) {
                 $scope.c = c;
 
                 $scope.yes = function (id) {
@@ -97,26 +97,23 @@ angular.module('controller.contact', ['ngRoute', 'app.users'])
                     this.$dismiss();
                 };
             },
-            scope: $scope,
-            size: 'sm'
-        });
+            $scope
+            );
     };
 
     $scope.showNewModal = function (action, c) {
-        $modal.open({
-            resolve: {
+        ModalService.createModal({
                 action: function () {
                     return action;
                 },
                 c: function () {
                     return c;
                 }
-            },
-            templateUrl: "pages/directives/new-contact-modal.html",
-            controller: function (action, c) {
+            }, "pages/directives/new-contact-modal.html",
+            function (action, c) {
                 $scope.action = action;
-                $scope.salvar = function (contact) {
-                    $scope.contact = contact;
+                $scope.salvar = function (c) {
+                    $scope.contact = c;
                     $scope.saveContact();
                     this.$dismiss();
                 };
@@ -131,9 +128,8 @@ angular.module('controller.contact', ['ngRoute', 'app.users'])
                     this.$dismiss();
                 };
             },
-            scope: $scope,
-            size: 'sm',
-        });
+            $scope
+        );
     };
 
     $scope.listContacts();

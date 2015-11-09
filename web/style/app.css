@@ -44,3 +44,13 @@ footer p {
     50% 50%
     no-repeat;
 }
+
+.alert {
+    padding: 15px;
+    border: 1px solid transparent;
+    margin: 0;
+}
+
+alert-box{
+    width: 100%;
+}

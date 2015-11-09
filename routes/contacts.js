@@ -7,60 +7,65 @@ var HttpStatus = require('http-status');
 
 var contactDao = require('../datalayer/contactDao');
 
+function sendError(err, res){
+
+    res.status(HttpStatus.NOT_FOUND).send({
+        code: HttpStatus.NOT_FOUND,
+        message: !err ? "Not found at " + new Date() : err
+    });
+}
+
 /* GET home page. */
 router.get('/contacts', function (req, res, next) {
-    if (req.params.id) {
-        next();
-    }
     contactDao.list(function (err, result) {
-        if (result) {
-            res.status(HttpStatus.OK).send(result);
+        if (err || !result) {
+            sendError(err, res);
         } else {
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
+            res.status(HttpStatus.OK).send(result);
         }
     });
 });
 
-router.get('/contacts/:id', function (req, res) {
+router.get('/contacts/:id', function (req, res, next) {
     var id = req.params.id;
     contactDao.getById(id, function (err, result) {
-        if (result) {
-            res.status(HttpStatus.OK).send(result);
+        if (err || !result) {
+            sendError(err, res);
         } else {
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
+            res.status(HttpStatus.OK).send(result);
         }
     });
 });
 
-router.put('/contacts/:id', function (req, res) {
+router.put('/contacts/:id', function (req, res, next) {
     var contact = req.body;
     contactDao.update(contact, function (err, result) {
-        if (!err) {
-            res.status(HttpStatus.OK).send(result);
+        if (err) {
+            sendError(err, res);
         } else {
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
+            res.status(HttpStatus.OK).send(result);
         }
     });
 });
 
-router.post('/contacts', function (req, res) {
+router.post('/contacts', function (req, res, next) {
     var contact = req.body;
     contactDao.save(contact, function (err, result) {
-        if (!err) {
-            res.status(HttpStatus.OK).send(result);
+        if (err) {
+            sendError(err, res);
         } else {
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
+            res.status(HttpStatus.OK).send(result);
         }
     });
 });
 
-router.delete('/contacts/:id', function (req, res) {
+router.delete('/contacts/:id', function (req, res, next) {
     var id = req.params.id;
     contactDao.delete(id, function (err, result) {
-        if (!err) {
-            res.status(HttpStatus.OK).send(result);
+        if (err) {
+            sendError(err, res);
         } else {
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(err);
+            res.status(HttpStatus.OK).send(result);
         }
     });
 });

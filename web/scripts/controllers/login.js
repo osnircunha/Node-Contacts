@@ -1,7 +1,7 @@
 /**
  * Created by osnircunha on 9/24/15.
  */
-angular.module('controller.login', ['ngRoute']).controller('loginController', function ($scope, $rootScope, notification, $http, $location) {
+angular.module('controller.login', ['ngRoute']).controller('loginController', function ($scope, $rootScope, NotificationService, $http, $location) {
 
     $scope.cancel = function(){
         $scope.$dismiss('cancel');
@@ -20,11 +20,11 @@ angular.module('controller.login', ['ngRoute']).controller('loginController', fu
                 $scope.invalidCredentials = false;
                 $scope.$close(user);
             }, function (resp) {
-                notification.showError('Credenciais invalidas.');
+                NotificationService.showError('Credenciais invalidas.');
                 $scope.invalidCredentials = true;
             });
         } else {
-            notification.showError('Por favor preencha nome e senha.');
+            NotificationService.showError('Por favor preencha nome e senha.');
             $scope.invalidCredentials = true;
         }
     };
